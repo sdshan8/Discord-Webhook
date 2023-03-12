@@ -1,0 +1,142 @@
+:root {
+  --bg: #333337;
+  --bg-text: #151515;
+  --text: #fff;
+  --sub-text: #aab;
+  --text-pad: 0.6rem;
+  --badge-color: #5566dd;
+  --a-color: #6699ff;
+  --embed: #1DA1F2;
+  --embed-bg: #0003;
+}
+
+html, body {
+  background-color: var(--bg);
+  padding: 0;
+  margin: 0;
+  font-family: Arial,Sans-Serif;
+  color: var(--text);
+  font-size: 16px;
+}
+body {
+  display: flex;
+  justify-content: center;
+}
+blockquote {
+  border-left: 5px solid var(--embed);
+  margin: .2rem 1.5rem .2rem 0rem;
+  padding: .1rem;
+  border-radius: 4px;
+  background-color: var(--embed-bg);
+}
+blockquote:empty {
+  visibility: none;
+}
+.bot-info {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.name {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Arial,Sans-Serif;
+}
+.badge {
+  font-family: Verdana,Sans-Serif;
+  font-weight: bold;
+  font-size: 11px;
+  background-color: var(--badge-color);
+  padding: 2px 2.5px;
+  border-radius: 3px;
+}
+.span {
+  font-family: Arial, Sans-Serif;
+  color: var(--sub-text);
+  font-weight: 700;
+  font-size: 15px;
+}
+.time {
+  align-self: flex-end;
+  color: var(--sub-text);
+  font-size: 13px;
+}
+.con {
+  display: block;
+  margin: 0.8rem;
+  max-width: 500px;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+a, a:visited {
+  all: unset;
+  color: var(--a-color);
+}
+.preview {
+  margin-top: 0.3rem;
+  position: relative;
+  border: 0.5px solid var(--sub-text);
+  padding: 0.3rem;
+  border-radius: 5px;
+  display: flex;
+}
+.input {
+  position: relative;
+  top: 1rem;
+  display: flex;
+}
+button {
+  all: unset;
+  outline: solid transparent;
+  background-color: var(--bg-text);
+  padding: .5rem;
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: var(--text);
+}
+button:disabled,
+button[disabled] {
+  color: var(--sub-text);
+}
+button::before {
+  content: 'send';
+}
+button[aria-busy=true]::before {
+  content: 'sync';
+  color: var(--sub-text);
+}
+#content {
+  all: unset;
+  flex: 1 1 auto;
+  padding: var(--text-pad);
+  background-color: var(--bg-text);
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  word-break: break-word;
+}
+.img {
+  border-radius: 50%;
+  padding: 1px;
+  padding-right: 0.5rem;
+  width: 3.3rem;
+}
+.msg-con {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0.1rem 0.1rem 0.4rem;
+}
+.content {
+  font-family: Verdana,Sans-Serif;
+  font-size: 15px;
+  word-break: break-word;
+  margin: 2px 0;
+}
+.content:empty::before {
+  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat neque vitae nibh semper, a posuere massa sodales. Aliquam luctus.';
+  opacity: 0.5;
+}
+* {
+  transition: all 100ms;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+    <title>Discord Webhook</title>
+  </head>
+  <body onload="gg()">
+    <div class="con">
+      <span class="span">MESSAGE PREVIEW</span>
+      <div class="preview">
+        <div class="avatar-con">
+          <img class="img" id="avatar" alt="avatar" />
+        </div>
+        <div class="msg-con">
+          <div class="bot-info">
+            <span class="name"></span>
+            <span class="badge">BOT</span>
+            <span id="time" class="time">Today at </span>
+          </div>
+          <div id=preview class="content"></div>
+        </div>
+      </div>
+      <div class="input">
+        <textarea name="content" id=content rows="5" placeholder="Enter Your Message"></textarea>
+        <button disabled class="material-icons-outlined material-icons button"></button>
+      </div>
+    </div>
+    <script src="app.js" ></script>
+  </body>
+</html>
