@@ -1,23 +1,66 @@
-const URI = new URL("https://discord.com/api/webhooks/1053546550632124457/U3pkRv6RH0isL_qZUADHWaP__eVPETdNHX81xoxWNPqKP4oSnLXCphinJbwiugswyZEd");
-
 const content = document.querySelector("#content");
 const preview = document.querySelector("#preview");
 const send = document.querySelector(".button");
 const avatar = document.querySelector("#avatar");
 const name = document.querySelector(".name");
 const time = document.querySelector("#time");
+const modal = document.querySelector(".modal-wrapper");
+const webhook_url = document.querySelector(".modal > input");
+const modal_button = document.querySelector(".modal > button");
 
-async function gg() {
-  setTime()
+let URI, d;
+const urlRegex = /(https?:\/\/[^\s]+)/g;
+let avatarUrl = "2a5d5179-ef27-4923-a265-524dc546f9a2.jpeg";
+
+
+function modal_open() {
+  modal.style.display = 'flex';
+  modal.style.opacity = '1'
+}
+function modal_close() {
+  modal.style.opacity = '0'
+  modal.style.display = 'none';
+}
+
+modal_button.onclick = async  () => {
+  if(!(urlRegex.test(webhook_url.value))) {
+    alert('Please enter a valid webhook url')
+    return
+  }
+  URI = new URL(webhook_url.value)
   const ff = await fetch(URI);
   if (await ff.status == 200) {
-  const json = await ff.json();
-  avatar.src = `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.png`;
-  name.textContent = json.name;
+    const json = await ff.json();
+    avatar.src = `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.png`;
+    name.textContent = json.name;
+    modal_close();
+    localStorage.whUrl = URI
   } else {
-    avatar.src = 'https://api.dicebear.com/5.x/thumbs/svg';
+    avatar.src = avatarUrl;
     name.textContent = 'Anon';
-    alert('Please enter the correct webhook url')
+    alert('Please enter a valid webhook url')
+  }
+}
+
+const setup = async()=>{
+  if(localStorage.whUrl) {
+    URI = new URL(localStorage.whUrl)
+    const ff = await fetch(URI);
+    if (await ff.status == 200) {
+      const json = await ff.json();
+      avatar.src = `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.png`;
+      name.textContent = json.name;
+      modal_close();
+    } else {
+      localStorage.whUrl = null;
+      alert ('Error Occurred, Please enter URL again');
+      modal_open();
+    }
+  } else {
+    avatar.src = avatarUrl;
+    name.textContent = 'Anon';
+    setTime();
+    modal_open();
   }
 }
 
@@ -37,15 +80,13 @@ function ap(dd) {
   }
   return output;
 }
-let d = new Date();
 function setTime() {
-  time.textContent = `Today at ${ap(d)}`;
   d = new Date();
+  time.textContent = `Today at ${ap(d)}`;
 }
 
 
 function urlify(text) {
-  var urlRegex = /(https?:\/\/[^\s]+)/g;
   return text.replace(urlRegex, function(ur) {
     return '<a href="' + ur + '">' + ur + '</a>';
   })

@@ -8,7 +8,7 @@
       <link rel="stylesheet" href="style.css" type="text/css" media="all" />
     <title>Discord Webhook</title>
   </head>
-  <body onload="gg()">
+  <body onload="setup()">
     <div class="con">
       <span class="span">MESSAGE PREVIEW</span>
       <div class="preview">
@@ -26,7 +26,14 @@
       </div>
       <div class="input">
         <textarea name="content" id=content rows="5" placeholder="Enter Your Message"></textarea>
-        <button disabled class="material-icons-outlined material-icons button"></button>
+        <button disabled class="material-icons-outlined material-icons button send"></button>
+      </div>
+      <div class="modal-wrapper">
+        <div class="modal">
+          <h3>Webhook Url</h3>
+          <input placeholder="https://…" type="url" name="url" id="url">
+          <button type="button">OK</button>
+        </div>
       </div>
     </div>
     <script src="app.js" ></script>

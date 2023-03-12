@@ -8,6 +8,7 @@
   --a-color: #6699ff;
   --embed: #1DA1F2;
   --embed-bg: #0003;
+  --shadow: #11111155;
 }
 
 html, body {
@@ -85,7 +86,7 @@ a, a:visited {
   top: 1rem;
   display: flex;
 }
-button {
+button.send {
   all: unset;
   outline: solid transparent;
   background-color: var(--bg-text);
@@ -99,7 +100,7 @@ button:disabled,
 button[disabled] {
   color: var(--sub-text);
 }
-button::before {
+button.send::before {
   content: 'send';
 }
 button[aria-busy=true]::before {
@@ -139,4 +140,45 @@ button[aria-busy=true]::before {
 }
 * {
   transition: all 100ms;
+}
+.modal-wrapper {
+  position: absolute;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  padding: 9rem 0 0 0;
+  background-color: var(--shadow);
+  opacity: 0;
+}
+.modal {
+  display: flex;
+  flex-flow: column;
+  background-color: var(--bg);
+  height: fit-content;
+  width: 80%;
+  padding: 1rem;
+  max-width: 400px;
+  border-radius: 5px;
+  gap: 0.6rem;
+}
+.modal > h3 {
+  margin: 0;
+  font-size: 16px;
+}
+.modal > input {
+  all: unset;
+  flex: 1 1 auto;
+  padding: var(--text-pad);
+  background-color: var(--bg-text);
+  border-radius: 5px;
+  word-break: break-word;
+}
+.modal > button{
+  all: unset;
+  padding: var(--text-pad);
+  background-color: var(--badge-color);
+  border-radius: 5px;
+  width: 4rem;
+  text-align: center;
+  align-self: flex-end;
 }
