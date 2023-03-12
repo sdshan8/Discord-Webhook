@@ -86,7 +86,7 @@ a, a:visited {
   top: 1rem;
   display: flex;
 }
-button.send {
+button {
   all: unset;
   outline: solid transparent;
   background-color: var(--bg-text);
@@ -99,8 +99,9 @@ button.send {
 button:disabled,
 button[disabled] {
   color: var(--sub-text);
+  
 }
-button.send::before {
+button.button::before {
   content: 'send';
 }
 button[aria-busy=true]::before {

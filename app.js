@@ -8,9 +8,11 @@ const modal = document.querySelector(".modal-wrapper");
 const webhook_url = document.querySelector(".modal > input");
 const modal_button = document.querySelector(".modal > button");
 
+
+
 let URI, d;
 const urlRegex = /(https?:\/\/[^\s]+)/g;
-let avatarUrl = "2a5d5179-ef27-4923-a265-524dc546f9a2.jpeg";
+let avatarUrl = avatar.src;
 
 
 function modal_open() {
@@ -33,8 +35,13 @@ modal_button.onclick = async  () => {
     const json = await ff.json();
     avatar.src = `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.png`;
     name.textContent = json.name;
+    const wh = {
+      url: URI,
+      avatar: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.png`,
+      name: json.name
+    }
+    localStorage.wh = JSON.stringify(wh);
     modal_close();
-    localStorage.whUrl = URI
   } else {
     avatar.src = avatarUrl;
     name.textContent = 'Anon';
@@ -43,22 +50,13 @@ modal_button.onclick = async  () => {
 }
 
 const setup = async()=>{
-  if(localStorage.whUrl) {
-    URI = new URL(localStorage.whUrl)
-    const ff = await fetch(URI);
-    if (await ff.status == 200) {
-      const json = await ff.json();
-      avatar.src = `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.png`;
-      name.textContent = json.name;
-      modal_close();
-    } else {
-      localStorage.whUrl = null;
-      alert ('Error Occurred, Please enter URL again');
-      modal_open();
-    }
+  if(localStorage.wh) {
+    const wh = JSON.parse(localStorage.wh);
+    URI = new URL(wh.url)
+    avatar.src = wh.avatar;
+    name.textContent = wh.name;
+    modal_close();
   } else {
-    avatar.src = avatarUrl;
-    name.textContent = 'Anon';
     setTime();
     modal_open();
   }
