@@ -2,7 +2,7 @@ const content = document.querySelector("#content");
 const preview = document.querySelector("#preview");
 const send = document.querySelector(".button");
 const avatar = document.querySelector("#avatar");
-const name = document.querySelector(".name");
+const nameDiv = document.querySelector(".name");
 const time = document.querySelector("#time");
 const modal = document.querySelector(".modal-wrapper");
 const webhook_url = document.querySelector(".modal > input");
@@ -34,7 +34,7 @@ modal_button.onclick = async  () => {
   if (await ff.status == 200) {
     const json = await ff.json();
     avatar.src = `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.png`;
-    name.textContent = json.name;
+    nameDiv.textContent = json.name;
     const wh = {
       url: URI,
       avatar: `https://cdn.discordapp.com/avatars/${json.id}/${json.avatar}.png`,
@@ -44,7 +44,7 @@ modal_button.onclick = async  () => {
     modal_close();
   } else {
     avatar.src = avatarUrl;
-    name.textContent = 'Anon';
+    nameDiv.textContent = 'Anon';
     alert('Please enter a valid webhook url')
   }
 }
@@ -54,7 +54,7 @@ const setup = async()=>{
     const wh = JSON.parse(localStorage.wh);
     URI = new URL(wh.url)
     avatar.src = wh.avatar;
-    name.textContent = wh.name;
+    nameDiv.textContent = wh.name;
     modal_close();
   } else {
     setTime();
